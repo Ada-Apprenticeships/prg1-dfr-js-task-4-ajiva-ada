@@ -4,20 +4,27 @@ function fileExists(filename) {
   return filename ? fs.existsSync(filename) : false; //checks if file exists returns a boolean 
 }
 
-function validNumber(value) { //
-  return typeof value === 'number' && !isNaN(value);
+function validNumber(value) { 
+  return typeof value === 'number' && !isNaN(value); //checks if it is a valid numbrt 
 }
 
 function dataDimensions(dataframe) {
-  
-  // returns a list [rows (int), cols (int)]
+  if (!Array.isArray(dataframe) || dataframe.length === 0) {
+    return [-1, -1];} // no data in rows or columns 
+
+  // Check if the first element is an array
+  if (!Array.isArray(dataframe[0])) {
+    return [dataframe.length, -1]; //rows not columns 
+  }
+//returns rows and dimensions 
+  return [dataframe.length, dataframe[0].length || -1];
 }
 
 
 function calculateMean(dataset) {
-  // returns a float or false
-  
 }
+  
+
 
 
 function findTotal(dataset) {
